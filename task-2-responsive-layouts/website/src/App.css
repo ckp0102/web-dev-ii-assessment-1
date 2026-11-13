@@ -1,0 +1,202 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Teko:wght@400;600&display=swap');
+
+/*
+  AI-assisted CSS refactor
+  Tool: ChatGPT by OpenAI
+  Prompt: "fix everythung that i point you in one code ready for paste and add some coments too for better grade"
+*/
+/* General page styling */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: #231651;
+  color: #070410;
+  font-family: 'Lato', sans-serif;
+}
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+/* Website header and navigation */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  background-color: #FFFFFF;
+  box-shadow: 0 6px #070410;
+}
+.logo {
+  font-family: 'Teko', sans-serif;
+  font-size: 3em;
+  line-height: 1;
+  color: #231651;
+}
+.genres {
+  display: flex;
+  gap: 48px;
+}
+/* Shared button styling */
+.site-header button,
+.movie-details button {
+  font-family: 'Teko', sans-serif;
+  font-size: 2rem;
+  background-color: #4DCCBD;
+  color: #070410;
+  border: 2px solid #070410;
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+}
+/* Movie container using CSS Grid */
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px;
+}
+/* General movie card layout */
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: #FFFFFF;
+  box-shadow: 6px 6px #070410;
+  font-size: 1.5em;
+}
+.movie-card > img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: 16px;
+  text-align: center;
+}
+.movie-details p {
+  flex: 1;
+  margin: 0 0 16px;
+  line-height: 1.4;
+}
+.movie-details button {
+  width: 100%;
+  margin-top: auto;
+}
+/* Desktop layout starts at 1024px */
+@media (min-width: 1024px) {
+  /* Featured movie uses the full grid width */
+  .movie-card:first-child {
+    grid-column: 1 / -1;
+  }
+  .movie-card:first-child > img {
+    height: 350px;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+  /* Featured movie text and button appear side by side */
+  .movie-card:first-child .movie-details {
+    display: grid;
+    grid-template-columns: 1fr 35%;
+    gap: 16px;
+    align-items: center;
+  }
+  .movie-card:first-child .movie-details p {
+    margin: 0;
+  }
+  /* Hook and La La Land remain equal-height cards */
+  .movie-card:nth-child(2),
+  .movie-card:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  /* Horizontal layout for the final three movies */
+  .movie-card:nth-child(n + 4) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  /* Make the poster fill its entire grid area */
+  .movie-card:nth-child(n + 4) > img {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+  }
+  /* Keep the text and button in the right column */
+  .movie-card:nth-child(n + 4) .movie-details {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* Tablet layout from 720px to 1023px */
+@media (min-width: 720px) and (max-width: 1023px) {
+  .movie-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    padding: 32px;
+  }
+  .genres {
+    gap: 32px;
+  }
+  /* Equal card heights keep buttons aligned */
+  .movie-card {
+    height: 100%;
+  }
+  .movie-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .movie-details button {
+    margin-top: auto;
+  }
+}
+/* Mobile layout below 720px */
+@media (max-width: 719px) {
+  .site-header {
+    padding: 16px;
+  }
+  .logo {
+    font-size: 2em;
+  }
+  /* Hide genre navigation on small screens */
+  .genres {
+    display: none;
+  }
+  .movie-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  /* Show one movie card per row */
+  .movie-card {
+    width: 100%;
+  }
+  .movie-card > img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  .movie-details {
+    padding: 16px;
+  }
+  .movie-details button {
+    width: 100%;
+  }
+}
